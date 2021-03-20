@@ -14,17 +14,19 @@ export default function Form(props) {
     reset()
     props.onCancel()
   }
+  // props.onSave(name, interviewer);
 
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
         <form autoComplete="off">
+          <label htmlFor="name">Student Name</label>
           <input
+            id="name"
             className="appointment__create-input text--semi-bold"
             name={name}
             value={name}
             type="text"
-            placeholder="Enter Student Name"
             onChange={(event) => setName(event.target.value)}
           />
         </form>

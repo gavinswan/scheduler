@@ -14,7 +14,7 @@ export default function Form(props) {
     reset()
     props.onCancel()
   }
-  // props.onSave(name, interviewer);
+
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -24,7 +24,7 @@ export default function Form(props) {
           <input
             id="name"
             className="appointment__create-input text--semi-bold"
-            name={name}
+            name="name"
             value={name}
             type="text"
             onChange={(event) => setName(event.target.value)}

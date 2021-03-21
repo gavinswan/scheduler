@@ -35,44 +35,45 @@ export default function Application() {
   const interviewers  = getInterviewersForDay(state, state.day);
 
   function bookInterview(id, interview) {
-      
-    return axios.put(`/api/appointments/${id}`, {interview})
+  return new Promise((resolve, reject) => {   
+    axios.put(`/api/appointments/${id}`, {interview})
       .then (() => {
         const appointment = {...state.appointments[id], interview: {...interview}};
         const appointments = {...state.appointments, [id]: appointment};
         setState({...state, appointments });
       })
-      .catch(err => console.log(err.message))
+      .catch(err => reject())
+    })
   }
 
   function cancelInterview (id) {
     console.log("id: ", id)
-    
-    return axios.delete(`/api/appointments/${id}`)
+    return new Promise((resolve, reject) => {
+    axios.delete(`/api/appointments/${id}`)
       .then(() => {
         const appointment = {...state.appointments[id], interview: null};
         const appointments = {...state.appointments, [id]: appointment};
         setState({...state, appointments})
       })
-      .catch(err => console.log(err.message))
+      .catch(err => reject())
+    })
   }
-  
   
   //helper functions
   const schedule = appointments.map(appointment => {
     const interview = getInterview(state, appointment.interview)
 
-      return (
-        <Appointment 
-          key={appointment.id}
-          id={appointment.id}
-          time={appointment.time}
-          interview={interview}
-          interviewers={interviewers}
-          bookInterview={bookInterview}
-          cancelInterview={cancelInterview}
-        />
-      )
+    return (
+      <Appointment 
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+        interviewers={interviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
+      />
+    )
   });
 
 return (

@@ -53,18 +53,15 @@ export default function useApplicationData() {
         const appointments = {...state.appointments, [id]: appointment};
         setState({...state, appointments, days: updatedDaysArr(state.days, appointments) });
       })
-      .catch(err => console.log(err))
   }
 
   function cancelInterview (id) {
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
         const appointment = {...state.appointments[id], interview: null};
-        console.log(appointment)
         const appointments = {...state.appointments, [id]: appointment};
         setState({...state, appointments, days: updatedDaysArr(state.days, appointments)})
       })
-      .catch(err => console.log(err))
   }
   return { state, setDay, bookInterview, cancelInterview };
 }

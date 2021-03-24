@@ -30,11 +30,13 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-
     transition(SAVING);
     props.bookInterview(props.id, interview)
     .then(() => transition(SHOW))
-    .catch(() => transition(ERROR_SAVE, true))
+    .catch(() => {
+      transition(ERROR_SAVE, true)
+      console.log("props...: ", props)
+    })
   }
 
   function onDelete() {
@@ -58,9 +60,8 @@ export default function Appointment(props) {
   function onClose() {
     back(SHOW)
   }
-
   return (
-  <article className="appointment">
+  <article data-testid="appointment" className="appointment">
     <Header time={props.time} />
       {mode === EMPTY && <Empty 
       onAdd={() => transition(CREATE)}

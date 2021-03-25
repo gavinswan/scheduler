@@ -6,6 +6,14 @@
 
 - The scheduler app was built using Create React App and components were built in isolation using Storybook. Data is persisted by the API server using a PostgreSQL database. The client application communicates with an API server over HTTP, using the JSON format. Jest tests are used throughout and Cypress is used for end-to-end testing.
 
+## Screenshots
+
+!["Main Scheduler Interface"](https://github.com/gavinswan/scheduler/blob/master/docs/appointments.png?raw=true)
+
+!["Edit Screen"](https://github.com/gavinswan/scheduler/blob/master/docs/edit.png?raw=true)
+
+!["Delete Screen"](https://github.com/gavinswan/scheduler/blob/master/docs/delete.png?raw=true)
+
 ## Setup
 
 Install dependencies with `npm install`.
